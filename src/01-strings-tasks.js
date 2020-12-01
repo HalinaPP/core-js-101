@@ -146,7 +146,6 @@ function unbracketTag(str) {
 }
 
 
-
 /**
  * Converts all characters of the specified string into the upper case
  *
