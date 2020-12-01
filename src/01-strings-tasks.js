@@ -160,6 +160,7 @@ function convertToUpperCase(str) {
   return str.toUpperCase();
 }
 
+
 /**
  * Extracts e-mails from single string with e-mails list delimeted by semicolons
  *
