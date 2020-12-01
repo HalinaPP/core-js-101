@@ -32,7 +32,7 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-  throw new Error('Not implemented');
+  return new RegExp(/^{[\dabcdef]{8}-[\dabcdef]{4}-[\dabcdef]{4}-[\dabcdef]{4}-[\dabcdef]{12}}$/, 'i');
 }
 
 
@@ -55,6 +55,9 @@ function getRegexForGuid() {
  */
 function getRegexForPitSpot() {
   throw new Error('Not implemented');
+  /*
+  return new RegExp(/^(\w*\s*[ilws]+\w*\s*){1,12}$/);
+  */
 }
 
 
