@@ -135,8 +135,9 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  return (Math.abs(rect1.left - rect2.left) <= rect1.width
+          && Math.abs(rect1.top - rect2.top) <= rect1.height);
 }
 
 
@@ -184,8 +185,9 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const arr = str.split('');
+  return arr.find((item) => arr.indexOf(item) === arr.lastIndexOf(item));
 }
 
 
@@ -287,15 +289,21 @@ function isCreditCardNumber(/* ccn */) {
  * @return {number}
  *
  * @example:
- *   12345 ( 1+2+3+4+5 = 15, 1+5 = 6) => 6
+ *   12345 ( 1+2+3+4+5+ = 15, 1+5 = 6) => 6
  *   23456 ( 2+3+4+5+6 = 20, 2+0 = 2) => 2
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const sum = num.toString().split('').reduce((prev, curr) => Number(prev) + Number(curr), 0);
+  let res;
+  if (sum < 10) {
+    res = sum;
+  } else {
+    res = getDigitalRoot(sum);
+  }
+  return res;
 }
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
@@ -319,6 +327,10 @@ function getDigitalRoot(/* num */) {
  *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(/* str */) {
+  /*
+  const brackets = [['[', ']'], ['(', ')'], ['{', '}'], ['<', '>']];
+  str.split('').map
+  */
   throw new Error('Not implemented');
 }
 
@@ -343,8 +355,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -383,8 +395,9 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  return m1.map((item, i) => m2[i]
+    .map((item2, k) => item.reduce((sum, a, j) => sum + a * m2[j][k], 0)));
 }
 
 
