@@ -103,7 +103,17 @@ function getFastestPromise(array) {
  */
 function chainPromises(/* array, action */) {
   /*
-  rray.reduce((prev, curr) => curr.then((res) => action(prev, res)), 0);
+  return new Promise((resolve) => {
+    let sum = 0;
+    const d = array.reduce((prev, curr) => prev.then((res) => curr.then(
+      (res2) => {
+        sum = action(res, res2);
+        return sum;
+      },
+    )
+      .catch(() => res)), 0);
+    resolve(d);
+  });
   */
   throw new Error('Not implemented');
 }
