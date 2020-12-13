@@ -54,14 +54,12 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  throw new Error('Not implemented');
-  /*
-  return new RegExp(/^(\w*\s*[ilws]+\w*\s*){1,12}$/);
-  */
+  return new RegExp(/(?=.*[is])\w/);
 }
 
 
 /**
+ * Stop
  * Returns the password validator regex.
  * Regex will validate a password to make sure it meets the follwing criteria:
  *  - At least specified characters long (argument minLength)
@@ -82,8 +80,8 @@ function getRegexForPitSpot() {
  *   'Pa55'.match(validator) => false
  */
 
-function getPasswordValidator(/* minLength */) {
-  throw new Error('Not implemented');
+function getPasswordValidator(minLength) {
+  return new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{${minLength},}$`);
 }
 
 

@@ -431,8 +431,28 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  for (let i = 0; i < 3; i += 1) {
+    const str = position[i];
+    for (let k = 0; k < 3; k += 1) {
+      const fel = str[k];
+      let winCol = true;
+      let winStr = true;
+      let winDiagL = true;
+      let winDiagR = true;
+      for (let j = 0; j < 3; j += 1) {
+        winStr = fel !== undefined && winStr && (fel === str[j]);
+        winCol = fel !== undefined && winCol && (fel === position[j][i]);
+        winDiagL = fel !== undefined && winDiagL && (fel === position[j][j]);
+        winDiagR = fel !== undefined && position[j][k - j] && winDiagR
+        && (fel === position[j][k - j]);
+      }
+      if (winCol || winStr || winDiagL || winDiagR) {
+        return fel;
+      }
+    }
+  }
+  return undefined;
 }
 
 
