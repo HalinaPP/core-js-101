@@ -191,8 +191,18 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  function* generator() {
+    let index = startFrom - 1;
+    while (true) {
+      index += 1;
+      yield index;
+    }
+  }
+  const gen = generator();
+  return function g() {
+    return gen.next().value;
+  };
 }
 
 
