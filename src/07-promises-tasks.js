@@ -101,6 +101,7 @@ function getFastestPromise(array) {
  *    });
  *
  */
+
 function chainPromises(array, action) {
   return new Promise((resolve) => {
     let sum = 0;

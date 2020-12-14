@@ -483,7 +483,6 @@ function evaluateTicTacToePosition(position) {
   return undefined;
 }
 
-
 module.exports = {
   getFizzBuzz,
   getFactorial,

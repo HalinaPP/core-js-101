@@ -146,7 +146,6 @@ function retry(func, attempts) {
   };
 }
 
-
 /**
  * Returns the logging wrapper for the specified method,
  * Logger has to log the start and end of calling the specified function.
