@@ -276,8 +276,21 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const strCCN = ccn.toString();
+  const sum = strCCN.split('').slice(0, strCCN.length - 1).reverse()
+    .reduce((prev, curr, index) => {
+      const digit = Number(curr);
+      let forSum;
+      if (index % 2 !== 0) {
+        forSum = digit;
+      } else {
+        const digitSum = digit * 2;
+        forSum = digitSum > 9 ? digitSum - 9 : digitSum;
+      }
+      return prev + forSum;
+    }, Number(strCCN[strCCN.length - 1]));
+  return sum % 10 === 0;
 }
 
 /**
@@ -326,12 +339,19 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  /*
+function isBracketsBalanced(str) {
   const brackets = [['[', ']'], ['(', ')'], ['{', '}'], ['<', '>']];
-  str.split('').map
-  */
-  throw new Error('Not implemented');
+  const arr = [];
+  str.split('').forEach((currBracket) => {
+    const prev = arr[arr.length - 1];
+    const findBracketPair = brackets.find((bracket) => bracket[0] === prev);
+    if (prev && findBracketPair && currBracket === findBracketPair[1]) {
+      arr.pop();
+    } else {
+      arr.push(currBracket);
+    }
+  });
+  return arr.length === 0;
 }
 
 
@@ -372,8 +392,16 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const pathArr = pathes.map((item) => item.split('/'));
+  let commonDirectory = '';
+  const el = pathArr.pop();
+  el.forEach((item, index) => {
+    if (pathArr.every((path) => path[index] === item)) {
+      commonDirectory += `${item}/`;
+    }
+  });
+  return commonDirectory;
 }
 
 
